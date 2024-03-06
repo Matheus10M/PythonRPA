@@ -2,19 +2,33 @@ name: CI
 
 on:
   schedule:
-    - cron: '45 18 * * *'
+    - cron: '20 19 * * *'
 
 jobs:
-  run_script:
+  run_script_and_notify:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
+
       - name: Install dependencies
         run: pip install -r requirements.txt
+
       - name: Run script
         run: python main.py
+
+      - name: Send email notification
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.live.com
+          server_port: 587
+          username: ${{ secrets.HOTMAIL_EMAIL }}
+          password: ${{ secrets.HOTMAIL_PASS }}
+          subject: "CI Pipeline Notification"
+          body: "Seu pipeline foi executado com sucesso!"
+          to: ${{ secrets.HOTMAIL_EMAIL }}
