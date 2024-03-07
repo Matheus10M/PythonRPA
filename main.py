@@ -24,6 +24,7 @@ with sync_playwright() as p:
         wait_for_page_load(page)
 
         page.locator('xpath=//*[@id="eael-user-login"]').click()
+        
         if restartus_email and restartus_password:
             page.fill('xpath=//*[@id="eael-user-login"]', restartus_email)
             wait_for_page_load(page)
@@ -38,6 +39,10 @@ with sync_playwright() as p:
             page.locator('//*[@id="eael-login-submit"]').click()
             print("Clicou no botão de login.")
             time.sleep(7)  
+             
+            element = page.locator('/html/body/div[1]/div[5]/div/div/div/div/div/div/span[1]')
+            texto = element.inner_text()
+            print(texto)
         else:
             print("Variáveis de ambiente para e-mail e/ou senha não estão definidas.")        
             # Esperar antes do fechamento do navegador ou da página
