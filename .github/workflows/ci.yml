@@ -23,9 +23,8 @@ jobs:
 
       - name: Run script
         run: |
-          cd PythonRPA  # Vá para o diretório onde está o seu script
-          python main.py > output.log  # Execute o script e redirecione a saída para um arquivo de log
-
+          python PythonRPA/main.py > output.log 
+          
       - name: Send email notification
         uses: dawidd6/action-send-mail@v3
         with:
