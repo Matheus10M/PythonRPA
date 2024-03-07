@@ -2,17 +2,17 @@ name: CI
 
 on:
   schedule:
-    - cron: '6 23 * * *'
+    - cron: '13 20 * * *'  # Executar às 20:13 (horário de SP) todos os dias
 
 jobs:
   run_script_and_notify:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Set up Python
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v2
         with:
           python-version: '3.x'
 
@@ -20,11 +20,10 @@ jobs:
         run: |
           pip install -r requirements.txt
           playwright install
-
       - name: Run script
         run: |
-          python PythonRPA/main.py > output.log 
-          
+          cd PythonRPA  # Vá para o diretório onde está o seu script
+          python main.py > output.log  # Execute o script e redirecione a saída para um arquivo de log
       - name: Send email notification
         uses: dawidd6/action-send-mail@v3
         with:
