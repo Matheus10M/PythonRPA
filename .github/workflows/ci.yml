@@ -2,7 +2,7 @@ name: CI
 
 on:
   schedule:
-    - cron: '58 19 * * *'
+    - cron: '6 23 * * *'
 
 jobs:
   run_script_and_notify:
