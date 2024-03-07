@@ -2,7 +2,7 @@ name: CI
 
 on:
   schedule:
-    - cron: '20 19 * * *'
+    - cron: '40 21 * * *'
 
 jobs:
   run_script_and_notify:
@@ -17,10 +17,14 @@ jobs:
           python-version: '3.x'
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          pip install -r requirements.txt
+          playwright install
 
       - name: Run script
-        run: python main.py
+        run: |
+          cd PythonRPA  # Vá para o diretório onde está o seu script
+          python main.py > output.log  # Execute o script e redirecione a saída para um arquivo de log
 
       - name: Send email notification
         uses: dawidd6/action-send-mail@v3
