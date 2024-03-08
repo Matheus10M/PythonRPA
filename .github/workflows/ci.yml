@@ -2,17 +2,14 @@ name: CI
 
 on:
   schedule:
-    - cron: '29 21 * * *'  # Executar às 21:26 (horário de SP) todos os dias
-
+    - cron: '55 13 * * *'  # Executar às 13:55 (horário de SP) todos os dias
+    
 jobs:
   run_script_and_notify:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-
-      - name: Navigate to script directory
-        run: cd PythonRPA
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -26,7 +23,7 @@ jobs:
 
       - name: Run script
         run: |
-          python main.py > output.log
+          python PythonRPA/main.py > output.log
 
       - name: Send email notification
         uses: dawidd6/action-send-mail@v3
