@@ -2,7 +2,7 @@ name: CI
 
 on:
   schedule:
-    - cron: '26 21 * * *'  # Executar às 21:26 (horário de SP) todos os dias
+    - cron: '29 21 * * *'  # Executar às 21:26 (horário de SP) todos os dias
 
 jobs:
   run_script_and_notify:
