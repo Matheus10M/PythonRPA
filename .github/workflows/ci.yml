@@ -63,8 +63,8 @@ jobs:
         with:
           server_address: smtp.live.com
           server_port: 587
-          username: ${{ secrets.HOTMAIL_EMAIL }}
-          password: ${{ secrets.HOTMAIL_PASS }}
+          username: ${{ secrets.GMAIL_USERNAME }}
+          password: ${{ secrets.GMAIL_PASSWORD }}
           subject: "CI Pipeline Notification"
           body: "Seu pipeline foi executado com sucesso!"
           to: "matheus-cmelo@hotmail.com"
