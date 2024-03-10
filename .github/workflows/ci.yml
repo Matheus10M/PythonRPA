@@ -30,6 +30,11 @@ jobs:
         run: |
           pip list  # Lista todas as dependências instaladas
 
+      - name: Verify virtualenv path
+        run: |
+          source venv/bin/activate
+          echo $PATH
+
       - name: Verify virtual environment
         run: |
           source venv/bin/activate
