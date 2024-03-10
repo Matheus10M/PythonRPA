@@ -2,7 +2,8 @@ name: CI
 
 on:
   schedule:
-    - cron: '31 14 * * *'  # Executar às 14:23 (horário de SP) hoje
+      - cron: '*/2 * * * *'  # Executar a cada 2 minutos
+    # - cron: '31 14 * * *'   Executar às 14:23 (horário de SP) hoje
     
 jobs:
   run_script_and_notify:
@@ -18,11 +19,16 @@ jobs:
 
       - name: Install dependencies
         run: |
+          python -m pip install --upgrade pip
+          python -m pip install virtualenv
+          virtualenv venv
+          source venv/bin/activate
           pip install -r requirements.txt
           playwright install
 
       - name: Run script
         run: |
+          source venv/bin/activate
           python main.py 
           
       - name: Send email notification
