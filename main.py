@@ -9,7 +9,7 @@ from playwright._impl._errors import TargetClosedError
 import time
 from config import restartus_email, restartus_password  # Importando as credenciais do arquivo config.py
 
-
+print("Módulos importados corretamente.")
 
 with sync_playwright() as p:
     navegador = p.chromium.launch(headless=False)
