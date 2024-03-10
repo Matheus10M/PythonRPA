@@ -2,9 +2,8 @@ name: CI
 
 on:
   schedule:
-      - cron: '*/2 * * * *'  # Executar a cada 2 minutos
-    # - cron: '31 14 * * *'   Executar às 14:23 (horário de SP) hoje
-    
+    - cron: '*/2 * * * *'  # Executar a cada 2 minutos
+
 jobs:
   run_script_and_notify:
     runs-on: ubuntu-latest
@@ -24,7 +23,8 @@ jobs:
           virtualenv venv
           source venv/bin/activate
           pip install -r requirements.txt
-          playwright install
+          pip show playwright  # Verificar a instalação do Playwright
+          playwright install   # Instalar o Playwright
 
       - name: Run script
         run: |
