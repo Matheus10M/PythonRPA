@@ -26,8 +26,12 @@ jobs:
           # Reinstalação do Playwright com Chromium
           python -m playwright install --with-chromium
           python -m playwright install --with-deps
-          
 
+      - name: Verify virtualenv path
+        run: |
+          source venv/bin/activate
+          echo $PATH    
+          
       - name: (opcional) Verificar caminho do Chromium
         run: |
           source venv/bin/activate
@@ -43,10 +47,7 @@ jobs:
         run: |
           pip list  # Lista todas as dependências instaladas
 
-      - name: Verify virtualenv path
-        run: |
-          source venv/bin/activate
-          echo $PATH
+      
 
       - name: Verify virtual environment
         run: |
