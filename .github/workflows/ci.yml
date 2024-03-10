@@ -67,6 +67,6 @@ jobs:
           password: ${{ secrets.HOTMAIL_PASS }}
           subject: "CI Pipeline Notification"
           body: "Seu pipeline foi executado com sucesso!"
-          to: ${{ secrets.HOTMAIL_EMAIL }}
+          to: "matheus-cmelo@hotmail.com"
           from: "matheus10.c48@gmail.com"  # Endereço de email de remetente
 
