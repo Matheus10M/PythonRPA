@@ -5,7 +5,11 @@
 # --- importe de bibliotecas
 from playwright.sync_api import sync_playwright
 import time
-from config import restartus_email, restartus_password
+import os
+# from config import restartus_email, restartus_password
+
+restartus_email = os.getenv("RESTARTUS_EMAIL")
+restartus_password = os.getenv("RESTARTUS_PASSWORD")
 
 print("Módulos importados corretamente.")
 
@@ -26,12 +30,12 @@ with sync_playwright() as p:
 
     if restartus_email and restartus_password:
         # Preencher o campo de e-mail
-        page.fill('xpath=//*[@id="eael-user-login"]', restartus_email)
+        page.fill('xpath=//*[@id="eael-user-login"]', RESTARTUS_EMAIL)
         wait_for_page_load(page)  # Aguardar o carregamento após o preenchimento
         print("Digitou o e-mail")
 
         # Preencher o campo de senha
-        page.fill('xpath=//*[@id="eael-user-password"]', restartus_password)
+        page.fill('xpath=//*[@id="eael-user-password"]', RESTARTUS_PASSWORD)
         wait_for_page_load(page)  # Aguardar o carregamento após o preenchimento
         print("Digitou a senha")
 
