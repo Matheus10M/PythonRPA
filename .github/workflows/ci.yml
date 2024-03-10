@@ -27,7 +27,7 @@ jobs:
           pip install -r requirements.txt
           # Reinstalação do Playwright com Chromium
           python -m playwright install --with-chromium
-          python -m playwright install --with-deps
+          npx playwright install --with-deps
 
       - name: Verify virtualenv path
         run: |
@@ -41,7 +41,7 @@ jobs:
 
       - name: Verificar instalação do Chromium
         run: |
-          python -m playwright install --with-deps
+          npx playwright install --with-deps
           echo "Saída do comando playwright install:"
           playwright install
 
