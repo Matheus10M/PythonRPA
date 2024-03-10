@@ -26,6 +26,19 @@ jobs:
           pip show playwright  # Verificar a instalação do Playwright
           playwright install   # Instalar o Playwright
 
+      - name: Verify installed dependencies
+        run: |
+          pip list  # Lista todas as dependências instaladas
+
+      - name: Verify virtual environment
+        run: |
+          source venv/bin/activate
+          python --version  # Verifica a versão do Python no ambiente virtual
+
+      - name: Verify module availability
+        run: |
+          python -c "import playwright"  # Verifica se o módulo Playwright está disponível
+
       - name: Run script
         run: |
           source venv/bin/activate
