@@ -23,8 +23,13 @@ jobs:
           virtualenv venv
           source venv/bin/activate
           pip install -r requirements.txt
-          pip show playwright  # Verificar a instalação do Playwright
-          playwright install --upgrade   # Instalar ou atualizar o Playwright
+          # Reinstalação do Playwright com Chromium
+          python -m playwright install --with-chromium
+
+      - name: (opcional) Verificar caminho do Chromium
+        run: |
+          source venv/bin/activate
+          which chromium
 
       - name: Verify installed dependencies
         run: |
@@ -40,7 +45,6 @@ jobs:
           source venv/bin/activate
           python --version  # Verifica a versão do Python no ambiente virtual
           pip show playwright  # Verificar o local do módulo Playwright
-          
 
       - name: Verify module availability
         run: |
@@ -50,8 +54,8 @@ jobs:
       - name: Run script
         run: |
           source venv/bin/activate
-          python main.py 
-          
+          python main.py
+
       - name: Send email notification
         uses: dawidd6/action-send-mail@v3
         with:
