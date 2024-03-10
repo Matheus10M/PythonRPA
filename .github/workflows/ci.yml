@@ -64,7 +64,7 @@ jobs:
           server_address: smtp.gmail.com
           server_port: 587
           username: ${{ secrets.GMAIL_USERNAME }}
-          password: ${{ secrets.GMAIL_PASSWORD }}
+          password: ${{ secrets.GMAIL_APP_PASSWORD }}
           subject: "CI Pipeline Notification"
           body: "Seu pipeline foi executado com sucesso!"
           to: "matheus-cmelo@hotmail.com"
