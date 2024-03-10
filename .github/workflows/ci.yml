@@ -25,11 +25,19 @@ jobs:
           pip install -r requirements.txt
           # Reinstalação do Playwright com Chromium
           python -m playwright install --with-chromium
+          python -m playwright install --with-deps
+          
 
       - name: (opcional) Verificar caminho do Chromium
         run: |
           source venv/bin/activate
           which chromium
+
+      - name: Verificar instalação do Chromium
+        run: |
+          python -m playwright install --with-deps
+          echo "Saída do comando playwright install:"
+          playwright install
 
       - name: Verify installed dependencies
         run: |
