@@ -24,7 +24,7 @@ jobs:
           source venv/bin/activate
           pip install -r requirements.txt
           pip show playwright  # Verificar a instalação do Playwright
-          playwright install   # Instalar o Playwright
+          playwright install --upgrade   # Instalar ou atualizar o Playwright
 
       - name: Verify installed dependencies
         run: |
@@ -37,6 +37,7 @@ jobs:
 
       - name: Verify module availability
         run: |
+          source venv/bin/activate
           python -c "import playwright"  # Verifica se o módulo Playwright está disponível
 
       - name: Run script
