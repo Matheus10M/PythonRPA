@@ -21,35 +21,20 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install virtualenv
           virtualenv venv
-          pip install playwright --with-deps 
-          
           source venv/bin/activate
           pip install -r requirements.txt
-          # Reinstalação do Playwright com Chromium
-          python -m playwright install --with-chromium
+          # Instala o Playwright com dependências dentro do ambiente virtual
           npx playwright install --with-deps
 
       - name: Verify virtualenv path
         run: |
           source venv/bin/activate
-          echo $PATH    
-          
-      - name: (opcional) Verificar caminho do Chromium
+          echo $PATH
+
+      - name: Verificar instalação do Playwright
         run: |
           source venv/bin/activate
-          which chromium
-
-      - name: Verificar instalação do Chromium
-        run: |
-          npx playwright install --with-deps
-          echo "Saída do comando playwright install:"
-          playwright install
-
-      - name: Verify installed dependencies
-        run: |
-          pip list  # Lista todas as dependências instaladas
-
-      
+          npx playwright --version
 
       - name: Verify virtual environment
         run: |
@@ -77,3 +62,4 @@ jobs:
           subject: "CI Pipeline Notification"
           body: "Seu pipeline foi executado com sucesso!"
           to: ${{ secrets.HOTMAIL_EMAIL }}
+
