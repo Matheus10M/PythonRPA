@@ -23,8 +23,10 @@ jobs:
           virtualenv venv
           source venv/bin/activate
           pip install -r requirements.txt
-          # Instala o Playwright com dependências dentro do ambiente virtual
-          npx playwright install --with-deps
+
+      - name: Download Playwright with dependencies
+        run: |
+          python -m playwright install
 
       - name: Verify virtualenv path
         run: |
