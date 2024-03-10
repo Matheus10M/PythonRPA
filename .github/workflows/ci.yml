@@ -34,6 +34,7 @@ jobs:
         run: |
           source venv/bin/activate
           python --version  # Verifica a versão do Python no ambiente virtual
+          pip show playwright  # Verificar o local do módulo Playwright
 
       - name: Verify module availability
         run: |
