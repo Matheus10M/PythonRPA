@@ -26,12 +26,6 @@ jobs:
           pip show playwright  # Verificar a instalação do Playwright
           playwright install --upgrade   # Instalar ou atualizar o Playwright
 
-      # Instalação do submódulo playwright._impl._errors
-      - name: Install playwright._impl._errors (opcional)
-        run: |
-          source venv/bin/activate
-          python -m pip install playwright._impl._errors
-
       - name: Verify installed dependencies
         run: |
           pip list  # Lista todas as dependências instaladas
