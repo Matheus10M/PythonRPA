@@ -60,7 +60,8 @@ with sync_playwright() as p:
             return valor
         amount = obter_e_acumular_valores(page)
         print(amount)
-           
+        print(f"::set-env name=AMOUNT::{amount}")
+        
         time.sleep(35)
 
     else:
