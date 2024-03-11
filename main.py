@@ -42,6 +42,7 @@ with sync_playwright() as p:
         # Esperar o botão de login ficar visível
         page.wait_for_selector('//*[@id="eael-login-submit"]', state='visible')
 
+        time.sleep(1.5)
         # Clicar no botão de login
         page.locator('//*[@id="eael-login-submit"]').click()
         print("Clicou no botão de login.")
