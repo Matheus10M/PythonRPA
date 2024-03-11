@@ -51,7 +51,7 @@ with sync_playwright() as p:
         time.sleep(1)
         # Função para obter e acumular os valores das divs
         def obter_e_acumular_valores(page):
-            acumulador = 0
+            
             divs = page.query_selector_all(".gamipress-user-points-amount")
             for div in divs:
                 valor = int(div.inner_text())
