@@ -68,7 +68,7 @@ jobs:
           username: ${{ secrets.GMAIL_USERNAME }}
           password: ${{ secrets.GMAIL_APP_PASSWORD }}
           subject: "CI Pipeline Notification"
-          body: "Seu pipeline foi executado com sucesso! O valor da variável amount é: $AMOUNT"
+          body: "Seu pipeline foi executado com sucesso! O valor da variável amount é: ${{ env.AMOUNT }}"
           to: "matheus-cmelo@hotmail.com"
           from: "matheus10.c48@gmail.com"  # Endereço de email de remetente
 
