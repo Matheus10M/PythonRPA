@@ -60,6 +60,9 @@ jobs:
           source venv/bin/activate
           python main.py
 
+      - name: Print AMOUNT variable
+        run: echo "AMOUNT = $AMOUNT"
+
       - name: Send email notification
         uses: dawidd6/action-send-mail@v3
         with:
