@@ -62,7 +62,7 @@ jobs:
 
       - name: Print AMOUNT variable
         run: echo "AMOUNT = $AMOUNT"
-
+      
       - name: Send email notification
         uses: dawidd6/action-send-mail@v3
         with:
@@ -72,6 +72,7 @@ jobs:
           password: ${{ secrets.GMAIL_APP_PASSWORD }}
           subject: "CI Pipeline Notification"
           body: "Seu pipeline foi executado com sucesso! O valor da variável amount é: ${{ env.AMOUNT }}"
+                 
           to: "matheus-cmelo@hotmail.com"
           from: "matheus10.c48@gmail.com"  # Endereço de email de remetente
 
