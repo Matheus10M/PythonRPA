@@ -48,7 +48,20 @@ with sync_playwright() as p:
         print("Clicou no botão de login.")
 
         # Pausa após o clique
-        time.sleep(7)
+        time.sleep(1)
+        # Função para obter e acumular os valores das divs
+        def obter_e_acumular_valores(page):
+            acumulador = 0
+            divs = page.query_selector_all(".gamipress-user-points-amount")
+            for div in divs:
+                valor = int(div.inner_text())
+                
+                # print(valor)
+            return valor
+        amount = obter_e_acumular_valores(page)
+        print(amount)
+           
+        time.sleep(35)
 
     else:
         print("Variáveis de ambiente para e-mail e/ou senha não estão definidas.")
