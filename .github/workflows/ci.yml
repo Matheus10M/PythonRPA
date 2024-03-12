@@ -2,7 +2,7 @@ name: CI
 
 on:
   schedule:
-      - cron: '*/1 * * * *'  # Executar a cada 1 minuto
+    - cron: '*/1 * * * *'  # Executar a cada 1 minuto
     # - cron: '0 12 * * *'  # Executar todos os dias às 12:00 (horário de São Paulo)
 
 jobs:
@@ -62,14 +62,12 @@ jobs:
 
           # Logando a saída do script para um arquivo
 
-      env:
-        CI_LOG_FILE: execution.log
-        # Salvando a saída do script em um arquivo de log
-      continue-on-error: true
-      if: always()
+        env:
+          CI_LOG_FILE: execution.log
+          # Salvando a saída do script em um arquivo de log
+        continue-on-error: true
+        if: always()
 
-
-    steps:  # configuração para captar o log gerado
       - name: Salvar saída do script no arquivo de log
         run: echo "$(<${{ env.CI_LOG_FILE }})"
 
