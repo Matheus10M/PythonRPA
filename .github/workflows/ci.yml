@@ -2,8 +2,8 @@ name: CI
 
 on:
   schedule:
-    #  - cron: '*/1 * * * *'  # Executar a cada 1 minuto
-      - cron: '0 12 * * *'  # Executar todos os dias às 12:00 (horário de São Paulo)
+      - cron: '*/1 * * * *'  # Executar a cada 1 minuto
+    #  - cron: '0 12 * * *'  # Executar todos os dias às 12:00 (horário de São Paulo)
     
 
 jobs:
@@ -60,8 +60,9 @@ jobs:
           source venv/bin/activate
           python main.py
 
-      - name: Print AMOUNT variable
-        run: echo "AMOUNT=${amount}" >> $GITHUB_ENV
+      - name: Set AMOUNT environment variable
+        run: |
+          echo "AMOUNT=${amount}" >> $GITHUB_ENV
       
       - name: Send email notification
         uses: dawidd6/action-send-mail@v3
