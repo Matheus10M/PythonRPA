@@ -3,26 +3,26 @@ name: CI
 on:
   schedule:
     #  - cron: '*/1 * * * *'  # Executar a cada 1 minuto
-      - cron: '0 12 * * *'  # Executar todos os dias às 12:00 (horário de São Paulo)
-    
+     - cron: '0 12 * * *'  # Executar todos os dias às 12:00 (horário de São Paulo)
 
 jobs:
   run_script_and_notify:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout repositório
         uses: actions/checkout@v2
 
-      - name: Set up Python
+      - name: Configurar Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
-          
-      - name: Install playwright globally
+
+      # Adicionando etapas para instalar e configurar o ambiente
+      - name: Instalar o Playwright globalmente
         run: |
           pip install playwright
-          
-      - name: Install dependencies
+
+      - name: Instalar dependências
         run: |
           python -m pip install --upgrade pip
           python -m pip install virtualenv
@@ -30,11 +30,11 @@ jobs:
           source venv/bin/activate
           pip install -r requirements.txt
 
-      - name: Download Playwright with dependencies
+      - name: Baixar Playwright com dependências
         run: |
           python -m playwright install
 
-      - name: Verify virtualenv path
+      - name: Verificar caminho do virtualenv
         run: |
           source venv/bin/activate
           echo $PATH
@@ -44,36 +44,49 @@ jobs:
           source venv/bin/activate
           npx playwright --version
 
-      - name: Verify virtual environment
+      - name: Verificar ambiente virtual
         run: |
           source venv/bin/activate
           python --version  # Verifica a versão do Python no ambiente virtual
           pip show playwright  # Verificar o local do módulo Playwright
 
-      - name: Verify module availability
+      - name: Verificar disponibilidade do módulo
         run: |
           source venv/bin/activate
           python -c "import playwright"  # Verifica se o módulo Playwright está disponível
 
-      - name: Run script
+      - name: Executar script
         run: |
           source venv/bin/activate
           python main.py
 
-      - name: Set AMOUNT environment variable
+          # Logando a saída do script para um arquivo
+
+      env:
+        CI_LOG_FILE: execution.log
+        # Salvando a saída do script em um arquivo de log
+      continue-on-error: true
+      if: always()
+
+    # A correção foi feita aqui
+    # O erro estava no uso da palavra-chave 'post' incorreta
+    steps:  # Substitua 'post' por 'steps'
+      - name: Salvar saída do script no arquivo de log
+        run: echo "$(<${{ env.CI_LOG_FILE }})"
+
+      # Adicionando etapas para notificação por e-mail
+      - name: Definir variável de ambiente AMOUNT
         run: |
           echo "AMOUNT=${amount}" >> $GITHUB_ENV
-      
-      - name: Send email notification
+
+      - name: Enviar notificação por e-mail
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
           server_port: 587
           username: ${{ secrets.GMAIL_USERNAME }}
           password: ${{ secrets.GMAIL_APP_PASSWORD }}
-          subject: "CI Pipeline Notification"
+          subject: "Notificação do Pipeline de CI"  # Assunto
           body: "Seu pipeline foi executado com sucesso! O valor da variável amount é: ${{ env.AMOUNT }}"
-                 
           to: "matheus-cmelo@hotmail.com"
-          from: "matheus10.c48@gmail.com"  # Endereço de email de remetente
-
+          from: "matheus10.c48@gmail.com"  # Endereço de e-mail do remetente
