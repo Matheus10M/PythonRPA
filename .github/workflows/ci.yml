@@ -68,9 +68,8 @@ jobs:
       continue-on-error: true
       if: always()
 
-    # A correção foi feita aqui
-    # O erro estava no uso da palavra-chave 'post' incorreta
-    steps:  # Substitua 'post' por 'steps'
+
+    steps:  # configuração para captar o log gerado
       - name: Salvar saída do script no arquivo de log
         run: echo "$(<${{ env.CI_LOG_FILE }})"
 
