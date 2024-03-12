@@ -61,7 +61,7 @@ jobs:
           python main.py
 
       - name: Print AMOUNT variable
-        run: echo "AMOUNT = $AMOUNT"
+        run: echo "AMOUNT=${amount}" >> $GITHUB_ENV
       
       - name: Send email notification
         uses: dawidd6/action-send-mail@v3
