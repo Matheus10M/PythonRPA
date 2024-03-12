@@ -3,15 +3,19 @@
 # 2. playwright install
 
 # --- importe de bibliotecas
+import logging
 from playwright.sync_api import sync_playwright
 import time
 import os
 # from config import restartus_email, restartus_password
 
+# Configuração do logger
+logging.basicConfig(filename='execution.log', level=logging.INFO)
+
 restartus_email = os.getenv("RESTARTUS_EMAIL")
 restartus_password = os.getenv("RESTARTUS_PASSWORD")
 
-print("Módulos importados corretamente.")
+logging.info("Módulos importados corretamente.")
 
 with sync_playwright() as p:
     navegador = p.chromium.launch(headless=True)
@@ -33,12 +37,14 @@ with sync_playwright() as p:
         page.fill('xpath=//*[@id="eael-user-login"]', RESTARTUS_EMAIL)
         wait_for_page_load(page)  # Aguardar o carregamento após o preenchimento
         print("Digitou o e-mail")
+        logging.info("Digitou o e-mail")
 
         # Preencher o campo de senha
         page.fill('xpath=//*[@id="eael-user-password"]', RESTARTUS_PASSWORD)
         wait_for_page_load(page)  # Aguardar o carregamento após o preenchimento
         print("Digitou a senha")
-
+        logging.info("Digitou a senha")
+        
         # Esperar o botão de login ficar visível
         page.wait_for_selector('//*[@id="eael-login-submit"]', state='visible')
 
@@ -46,7 +52,8 @@ with sync_playwright() as p:
         # Clicar no botão de login
         page.locator('//*[@id="eael-login-submit"]').click()
         print("Clicou no botão de login.")
-
+        logging.info("Clicou no botão de login.")
+        
         # Pausa após o clique
         time.sleep(1)
         # Função para obter e acumular os valores das divs
@@ -60,6 +67,7 @@ with sync_playwright() as p:
             return valor
         amount = obter_e_acumular_valores(page)
         print(amount)
+        logging.info(f"Valor obtido e acumulado: {amount}")
         print(f"::set-env name=AMOUNT::{amount}")
         
         time.sleep(35)
@@ -70,3 +78,5 @@ with sync_playwright() as p:
     # Fechar a página e o navegador
     page.close()
     navegador.close()
+
+    logging.info("Fim da execução do script.")
