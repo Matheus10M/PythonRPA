@@ -2,7 +2,7 @@ name: CI
 
 on:
   schedule:
-    - cron: '*/2 * * * *'  # Executar a cada 1 minuto
+    - cron: '*/1 * * * *'  # Executar a cada 1 minuto
     # - cron: '0 12 * * *'  # Executar todos os dias às 12:00 (horário de São Paulo)
 
 jobs:
