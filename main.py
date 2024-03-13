@@ -65,8 +65,12 @@ with sync_playwright() as p:
                 
                 # print(valor)
             return valor
-        amount = obter_e_acumular_valores(page)
-        print(amount)
+        rtc = obter_e_acumular_valores(page)
+        print(rtc,"$RTC")
+        amount = int(rtc)
+        print(amount,"$RTC")
+
+        
         logging.info(f"Valor obtido e acumulado: {amount}")
         print(f"::set-env name=AMOUNT::{amount}")
         
