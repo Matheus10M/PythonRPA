@@ -69,7 +69,7 @@ jobs:
         if: always()
 
       - name: Salvar saída do script no arquivo de log
-        run: cat -a ${{ env.CI_LOG_FILE }} >> $GITHUB_ENV
+        run: cat ${{ env.CI_LOG_FILE }} >> $GITHUB_ENV
 
       - name: Definir variável de ambiente AMOUNT
         run: |
