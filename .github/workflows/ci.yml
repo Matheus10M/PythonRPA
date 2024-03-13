@@ -85,4 +85,4 @@ jobs:
           subject: "Notificação do Pipeline de CI"  # Assunto
           body: "Seu pipeline foi executado com sucesso! O valor da variável amount é: ${{ env.AMOUNT }}"
           to: "matheus-cmelo@hotmail.com"
-          from: "matheus10.c48@gmail.com"  # Endereço de e-mail do remetente
+          from: "${{ secrets.GMAIL_USERNAME }}"  # Endereço de e-mail do remetente
