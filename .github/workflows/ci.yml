@@ -69,9 +69,8 @@ jobs:
         if: always()
 
       - name: Salvar saída do script no arquivo de log
-        run: echo "$(<${{ env.CI_LOG_FILE }})"
+        run: cat ${{ env.CI_LOG_FILE }}
 
-      # Adicionando etapas para notificação por e-mail
       - name: Definir variável de ambiente AMOUNT
         run: |
           echo "AMOUNT=${amount}" >> $GITHUB_ENV
