@@ -2,8 +2,8 @@ name: CI
 
 on:
   schedule:
-   # - cron: '*/6 * * * *'  # Executar a cada 6 minuto
-     - cron: '0 12 * * *'  # Executar todos os dias às 12:00 (horário de São Paulo)
+     - cron: '*/6 * * * *'  # Executar a cada 6 minuto
+     # - cron: '0 12 * * *'  # Executar todos os dias às 12:00 (horário de São Paulo)
 
 jobs:
   run_script_and_notify:
