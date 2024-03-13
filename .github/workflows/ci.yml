@@ -73,7 +73,12 @@ jobs:
 
       - name: Definir variável de ambiente AMOUNT
         run: |
+          export AMOUNT
           echo "AMOUNT=${amount}" >> $GITHUB_ENV
+
+      - name: Verificar se a variável AMOUNT foi exportada
+        run: |
+          echo $AMOUNT    
 
       - name: Enviar notificação por e-mail
         uses: dawidd6/action-send-mail@v3
