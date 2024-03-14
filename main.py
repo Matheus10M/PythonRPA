@@ -7,7 +7,6 @@ import logging
 from playwright.sync_api import sync_playwright
 import time
 import os
-# from config import restartus_email, restartus_password
 
 # Configuração do logger
 logging.basicConfig(filename='execution.log', level=logging.INFO)
