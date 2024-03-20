@@ -91,7 +91,3 @@ jobs:
           body: "Seu pipeline foi executado com sucesso! O valor da variável amount é: ${{ env.AMOUNT }}"
           to: "matheus-cmelo@hotmail.com"
           from: "${{ secrets.GMAIL_USERNAME }}"  # Endereço de e-mail do remetente
-
-      - name: Ignorar validação de certificado SSL
-        env:
-          ACTIONS_ALLOW_UNTRUSTED_CERTIFICATES: true
