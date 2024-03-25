@@ -17,7 +17,7 @@ restartus_password = os.getenv("RESTARTUS_PASSWORD")
 logging.info("Módulos importados corretamente.")
 
 with sync_playwright() as p:
-    navegador = p.chromium.launch(headless=True)
+    navegador = p.chromium.launch(headless=False)
     page = navegador.new_page()
 
     # Função espera a página carregar para executar a próxima ação
